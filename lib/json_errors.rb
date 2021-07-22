@@ -2,7 +2,6 @@
 
 require_relative 'json_errors/version'
 
+# Main module
 module JsonErrors
-  class Error < StandardError; end
-  # Your code goes here...
 end

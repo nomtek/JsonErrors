@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
+# require 'active_record/railtie'
+require 'rails'
+require 'action_controller/railtie'
+require 'rspec/rails'
 require 'json_errors'
+require 'pry'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -12,4 +17,6 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  config.infer_base_class_for_anonymous_controllers = false
 end
