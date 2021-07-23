@@ -8,9 +8,12 @@ module JsonErrors
     extend ActiveSupport::Concern
 
     included do
-      rescue_from StandardError do |error|
-        log_error(error)
-        render_error ApplicationError.general_error(error)
+      error_dictionary = Config.instance.error_dictionary
+      error_dictionary.keys.reverse.each do |error_class|
+        rescue_from error_class do |error|
+          log_error(error)
+          render_error ApplicationError.send(error_dictionary[error_class], error)
+        end
       end
 
       rescue_from ApplicationError do |error|
