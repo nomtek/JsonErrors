@@ -6,6 +6,6 @@ module JsonErrors
   class Config
     include Singleton
 
-    attr_accessor :response_body, :error_dictionary, :custom_codes
+    attr_accessor :error_dictionary, :custom_codes
   end
 end
