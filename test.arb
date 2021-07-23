@@ -1,9 +1,0 @@
-class Foo
-  def self.method_missing(method_name, args)
-    p method_name
-    p args
-  end
-end
-
-
-Foo.send('a', 'b')
