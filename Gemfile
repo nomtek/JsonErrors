@@ -1,12 +1,19 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 # Specify your gem's dependencies in json_errors.gemspec
 gemspec
 
-gem "rake", "~> 13.0"
+gem 'pry', '~> 0.13.1'
 
-gem "rspec", "~> 3.0"
+gem 'rails', '~> 6.1.0'
 
-gem "rubocop", "~> 1.7"
+gem 'rake', '~> 13.0'
+
+gem 'rspec', '~> 3.0'
+gem 'rspec-rails'
+
+gem 'rubocop', '~> 1.7'
+gem 'rubocop-rake'
+gem 'rubocop-rspec'
