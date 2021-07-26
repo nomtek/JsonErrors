@@ -8,7 +8,7 @@ module JsonErrors
     extend ActiveSupport::Concern
 
     included do
-      error_dictionary = Config.instance.error_dictionary
+      error_dictionary = JsonErrors.config.error_dictionary
       error_dictionary.keys.reverse.each do |error_class|
         rescue_from error_class do |error|
           log_error(error)
