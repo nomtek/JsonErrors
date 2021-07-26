@@ -1,0 +1,8 @@
+Description:
+    It creates initializer file with basic config.
+
+Example:
+    rails generate json_errors:install
+
+    This will create:
+        config/initializers/json_errors.rb
