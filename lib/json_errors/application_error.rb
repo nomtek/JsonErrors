@@ -5,8 +5,9 @@ module JsonErrors
   class ApplicationError < StandardError
     attr_reader :code, :payload
 
-    def initialize(msg, name = nil, payload = [])
-      name = :general_error unless name.in?(codes.keys)
+    def initialize(msg, name, payload = [])
+      raise 'Wrong name' unless name.in?(codes.keys)
+
       @code = codes[name][:code]
       @name = name
       @payload = payload
@@ -34,7 +35,7 @@ module JsonErrors
       JsonErrors.config.custom_codes
     end
 
-    def to_json(_options)
+    def to_json(_options = nil)
       {
         code: code,
         message: message,
