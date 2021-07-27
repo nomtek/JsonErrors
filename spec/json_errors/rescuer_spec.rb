@@ -91,4 +91,40 @@ RSpec.describe JsonErrors::Rescuer, type: :controller do
       end
     end
   end
+
+  context 'when configuration is missing' do
+    let(:config) { JsonErrors::Config.instance }
+
+    context 'when error dictionary is missing' do
+      around(:each) do |example|
+        old_error_dictionary = config.error_dictionary
+        config.error_dictionary = {}
+        example.run
+        config.error_dictionary = old_error_dictionary
+      end
+
+      it 'raises error' do
+        dummy_class = class_double('DummyClass')
+        expect do
+          dummy_class.include(described_class)
+        end.to raise_error(RuntimeError, JsonErrors::Config.missing_config_error_meesage)
+      end
+    end
+
+    context 'when custom codes are missing' do
+      around(:each) do |example|
+        old_custom_codes = config.custom_codes
+        config.custom_codes = {}
+        example.run
+        config.custom_codes = old_custom_codes
+      end
+
+      it 'raises error' do
+        dummy_class = class_double('DummyClass')
+        expect do
+          dummy_class.include(described_class)
+        end.to raise_error(RuntimeError, JsonErrors::Config.missing_config_error_meesage)
+      end
+    end
+  end
 end

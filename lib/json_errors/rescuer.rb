@@ -9,6 +9,9 @@ module JsonErrors
 
     included do
       error_dictionary = JsonErrors.config.error_dictionary
+      raise JsonErrors::Config.missing_config_error_meesage if error_dictionary.blank?
+      raise JsonErrors::Config.missing_config_error_meesage if JsonErrors.config.custom_codes.blank?
+
       error_dictionary.keys.reverse.each do |error_class|
         rescue_from error_class do |error|
           log_error(error)
