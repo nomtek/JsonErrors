@@ -9,18 +9,6 @@ Application = Class.new(Rails::Application)
 Rails.application = Application
 Rails.logger = ActiveSupport::Logger.new(nil)
 
-config = JsonErrors.config
-config.custom_codes = {
-  custom_error: { code: 'custom_code', http_status: 418 },
-  custom_error2: { code: 'custom_code2', http_status: 419 },
-  test_error: { code: 'test_code', http_status: 422 }
-}
-CustomError = Class.new(StandardError)
-config.error_dictionary = {
-  CustomError => :custom_error2,
-  StandardError => :custom_error
-}
-
 RSpec.describe JsonErrors::Rescuer, type: :controller do
   controller do
     include JsonErrors::Rescuer
