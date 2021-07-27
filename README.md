@@ -50,8 +50,7 @@ No need for `rescue_from` or rendering the JSON error body. Every error is rescu
 ```json
 {
   "code":1010,
-  "message":"The parameter 'name' is missing or value is empty",
-  "payload":[]
+  "message":"The parameter 'name' is missing or value is empty"
 }
 ```
 
@@ -124,8 +123,7 @@ Both cases you will get the HTTP `403 Forbidden` response with JSON formatted bo
 ```json
 {
   "code":2001,
-  "message":"Authentication needed",
-  "payload":[]
+  "message":"Authentication needed"
 }
 ```
 ___

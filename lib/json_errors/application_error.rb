@@ -3,14 +3,13 @@
 module JsonErrors
   # Main error class to be rescued from
   class ApplicationError < StandardError
-    attr_reader :code, :payload
+    attr_reader :code
 
-    def initialize(msg, name, payload = [])
+    def initialize(msg, name)
       raise 'Wrong name' unless name.in?(codes.keys)
 
       @code = codes[name][:code]
       @name = name
-      @payload = payload
       super(msg)
     end
 
@@ -18,13 +17,8 @@ module JsonErrors
       error = args.first
       return super if error.nil?
       return super unless name.in?(codes.keys)
-      return new(error.to_s, name) unless error.respond_to?(:record)
 
-      validation_payload = []
-      error.record.errors.each do |key, messages|
-        validation_payload << { key => messages }
-      end
-      new(error.to_s, name, validation_payload)
+      new(error.to_s, name)
     end
 
     def self.respond_to_missing?(name, _respond_to_private = false)
@@ -38,8 +32,7 @@ module JsonErrors
     def to_json(_options = nil)
       {
         code: code,
-        message: message,
-        payload: payload
+        message: message
       }.to_json
     end
 

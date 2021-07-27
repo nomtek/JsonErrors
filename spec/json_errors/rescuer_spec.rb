@@ -29,8 +29,7 @@ RSpec.describe JsonErrors::Rescuer, type: :controller do
   let(:expected_response) do
     {
       code: 'custom_code',
-      message: 'Error message',
-      payload: []
+      message: 'Error message'
     }
   end
 
@@ -51,8 +50,7 @@ RSpec.describe JsonErrors::Rescuer, type: :controller do
       let(:expected_response) do
         {
           code: 'custom_code2',
-          message: 'Custom message',
-          payload: []
+          message: 'Custom message'
         }
       end
 
@@ -73,8 +71,7 @@ RSpec.describe JsonErrors::Rescuer, type: :controller do
       let(:expected_response) do
         {
           code: 'test_code',
-          message: 'Test message',
-          payload: []
+          message: 'Test message'
         }
       end
 

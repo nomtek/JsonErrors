@@ -14,12 +14,12 @@ RSpec.describe JsonErrors::ApplicationError do
   describe 'initializer' do
     context 'when name is not registered' do
       it 'raises error when wrong name is given' do
-        expect { described_class.new('a', :b, ['c']) }.to raise_error(RuntimeError, 'Wrong name')
+        expect { described_class.new('a', :b) }.to raise_error(RuntimeError, 'Wrong name')
       end
     end
 
     context 'when name is registered' do
-      subject(:error) { described_class.new('Test message', :test_error, ['c']) }
+      subject(:error) { described_class.new('Test message', :test_error) }
 
       it 'creates new object' do
         expect(error).to be_a(JsonErrors::ApplicationError)
@@ -31,10 +31,6 @@ RSpec.describe JsonErrors::ApplicationError do
 
       it 'assigns proper code' do
         expect(error.code).to eq('test_code')
-      end
-
-      it 'assigns proper payload' do
-        expect(error.payload).to eq(['c'])
       end
     end
   end
@@ -60,10 +56,6 @@ RSpec.describe JsonErrors::ApplicationError do
       it 'assigns proper code' do
         expect(error.code).to eq('custom_code')
       end
-
-      it 'assigns proper payload' do
-        expect(error.payload).to eq([])
-      end
     end
   end
 
@@ -74,7 +66,7 @@ RSpec.describe JsonErrors::ApplicationError do
   end
 
   describe '#http_status' do
-    subject(:error) { described_class.new('Test message', :test_error, ['c']) }
+    subject(:error) { described_class.new('Test message', :test_error) }
 
     it 'returns proper http_status' do
       expect(error.http_status).to eq(422)
@@ -86,8 +78,7 @@ RSpec.describe JsonErrors::ApplicationError do
     let(:expected_json) do
       {
         code: 'custom_code',
-        message: 'To json message',
-        payload: []
+        message: 'To json message'
       }.to_json
     end
 
