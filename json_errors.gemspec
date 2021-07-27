@@ -5,7 +5,7 @@ require_relative 'lib/json_errors/version'
 Gem::Specification.new do |spec|
   spec.name          = 'json_errors'
   spec.version       = JsonErrors::VERSION
-  spec.authors       = ['Łukasz Pająk']
+  spec.authors       = ['Łukasz Pająk', 'Nomtek']
   spec.email         = ['l.pajak@nomtek.com']
 
   spec.summary       = 'RoR JSON API errors handling gem'
