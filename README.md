@@ -1,3 +1,4 @@
+![example workflow](https://github.com/nomtek/JsonErrors/actions/workflows/<WORKFLOW_FILE>/badge.svg)
 # JsonErrors
 
 Welcome to Ruby on Rails gem for handling the JSON API errors.
