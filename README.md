@@ -115,7 +115,7 @@ Add new label to the `custom_codes`
 Then just raise the error while checking the authentication.
 
 ```ruby
-raise JsonErrors::ApplicationError.unauthenticated('Authentication needed') 
+raise JsonErrors::Error.unauthenticated('Authentication needed') 
 ```
 
 Both cases you will get the HTTP `403 Forbidden` response with JSON formatted body:

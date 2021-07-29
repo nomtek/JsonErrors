@@ -2,7 +2,10 @@
 
 require_relative 'json_errors/version'
 require_relative 'json_errors/config'
-require_relative 'json_errors/application_error'
+require_relative 'json_errors/error'
+require_relative 'json_errors/error/basic_error'
+require_relative 'json_errors/error/custom_payload_error'
+require_relative 'json_errors/error/validation_error'
 require_relative 'json_errors/rescuer'
 
 # Main module

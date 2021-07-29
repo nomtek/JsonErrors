@@ -2,15 +2,9 @@
 
 require 'spec_helper'
 require 'json_errors/config'
-require 'json_errors/application_error'
+require 'json_errors/error/basic_error'
 
-RSpec.describe JsonErrors::ApplicationError do
-  it 'responds to registered errors' do
-    expect(described_class).to respond_to(:custom_error)
-    expect(described_class).to respond_to(:custom_error2)
-    expect(described_class).to respond_to(:test_error)
-  end
-
+RSpec.describe JsonErrors::BasicError do
   describe 'initializer' do
     context 'when name is not registered' do
       it 'raises error when wrong name is given' do
@@ -22,7 +16,7 @@ RSpec.describe JsonErrors::ApplicationError do
       subject(:error) { described_class.new('Test message', :test_error) }
 
       it 'creates new object' do
-        expect(error).to be_a(JsonErrors::ApplicationError)
+        expect(error).to be_a(JsonErrors::BasicError)
       end
 
       it 'assigns proper message' do
@@ -31,30 +25,6 @@ RSpec.describe JsonErrors::ApplicationError do
 
       it 'assigns proper code' do
         expect(error.code).to eq('test_code')
-      end
-    end
-  end
-
-  describe '.method_missing' do
-    context 'when name is not registered' do
-      it 'raises not method error' do
-        expect { described_class.not_registered_name }.to raise_error(NoMethodError)
-      end
-    end
-
-    context 'when method is registered' do
-      subject(:error) { described_class.custom_error('Given test message') }
-
-      it 'creates new object' do
-        expect(error).to be_a(JsonErrors::ApplicationError)
-      end
-
-      it 'assigns proper message' do
-        expect(error.message).to eq('Given test message')
-      end
-
-      it 'assigns proper code' do
-        expect(error.code).to eq('custom_code')
       end
     end
   end
@@ -74,7 +44,7 @@ RSpec.describe JsonErrors::ApplicationError do
   end
 
   describe '#to_json' do
-    subject(:error) { described_class.custom_error('To json message') }
+    subject(:error) { described_class.new('To json message', :custom_error) }
     let(:expected_json) do
       {
         code: 'custom_code',

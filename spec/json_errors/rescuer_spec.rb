@@ -3,7 +3,7 @@
 require 'spec_helper'
 require 'json_errors/config'
 require 'json_errors/rescuer'
-require 'json_errors/application_error'
+require 'json_errors/error/basic_error'
 
 Application = Class.new(Rails::Application)
 Rails.application = Application
@@ -22,7 +22,7 @@ RSpec.describe JsonErrors::Rescuer, type: :controller do
     end
 
     def index3
-      raise JsonErrors::ApplicationError.test_error('Test message')
+      raise JsonErrors::Error.test_error('Test message')
     end
   end
 
