@@ -19,18 +19,58 @@ RSpec.describe JsonErrors::Error do
     end
 
     context 'when method is registered' do
-      subject(:error) { described_class.custom_error('Given test message') }
+      context 'without payload' do
+        subject(:error) { described_class.custom_error('Given test message') }
 
-      it 'creates new object' do
-        expect(error).to be_a(JsonErrors::BasicError)
+        it 'creates new object' do
+          expect(error).to be_a(JsonErrors::BasicError)
+        end
+
+        it 'assigns proper message' do
+          expect(error.message).to eq('Given test message')
+        end
+
+        it 'assigns proper code' do
+          expect(error.code).to eq('custom_code')
+        end
       end
 
-      it 'assigns proper message' do
-        expect(error.message).to eq('Given test message')
+      context 'with custom payload' do
+        subject(:error) { described_class.custom_error('Given test message', ['foo']) }
+
+        it 'creates new object' do
+          expect(error).to be_a(JsonErrors::CustomPayloadError)
+        end
+
+        it 'assigns proper message' do
+          expect(error.message).to eq('Given test message')
+        end
+
+        it 'assigns proper code' do
+          expect(error.code).to eq('custom_code')
+        end
+
+        it 'assigns proper payload' do
+          expect(error.payload).to eq(['foo'])
+        end
       end
 
-      it 'assigns proper code' do
-        expect(error.code).to eq('custom_code')
+      context 'with invalid record' do
+        subject(:error) { described_class.validation_error('Validation error message', payload) }
+        let(:payload) { double('StandardError', record: record) }
+        let(:record) { double('TestModel', errors: { foo: :bar }) }
+
+        it 'creates new object' do
+          expect(error).to be_a(JsonErrors::ValidationError)
+        end
+
+        it 'assigns proper message' do
+          expect(error.message).to eq('Validation error message')
+        end
+
+        it 'assigns proper code' do
+          expect(error.code).to eq('validation_error')
+        end
       end
     end
   end

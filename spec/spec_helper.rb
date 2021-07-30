@@ -26,7 +26,8 @@ JsonErrors.configure do |config|
   config.custom_codes = {
     custom_error: { code: 'custom_code', http_status: 418 },
     custom_error2: { code: 'custom_code2', http_status: 419 },
-    test_error: { code: 'test_code', http_status: 422 }
+    test_error: { code: 'test_code', http_status: 422 },
+    validation_error: { code: 'validation_error', http_status: 400, validation_errors: :active_record }
   }
   config.error_dictionary = {
     CustomError => :custom_error2,
