@@ -5,7 +5,7 @@ module JsonErrors
   class CustomPayloadError < BasicError
     attr_accessor :payload
 
-    def initialize(msg, name, payload)
+    def initialize(msg, name, payload = nil)
       @payload = payload
       super(msg, name)
     end
