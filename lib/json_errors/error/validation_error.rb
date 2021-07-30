@@ -4,10 +4,10 @@ module JsonErrors
   # Error class for custom payload errors
   class ValidationError < BasicError
     def initialize(msg, name, record)
+      super(msg, name)
       raise 'Wrong record' unless record.respond_to?(:errors)
 
       @record = record
-      super(msg, name)
     end
 
     def to_json(_options = nil)
@@ -28,7 +28,7 @@ module JsonErrors
         validation_payload << { key => messages }
       end
 
-      { object.class.to_s => validation_payload }
+      { record.class.to_s => validation_payload }
     end
   end
 end

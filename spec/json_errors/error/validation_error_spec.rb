@@ -4,14 +4,15 @@ require 'spec_helper'
 require 'json_errors/config'
 require 'json_errors/error/basic_error'
 
-RSpec.describe JsonErrors::CustomPayloadError do
-  subject(:error) { described_class.new('To json message', :custom_error, payload) }
-  let(:payload) { { foo: :bar } }
+RSpec.describe JsonErrors::ValidationError do
+  subject(:error) { described_class.new('To json message', :custom_error, record) }
+  let(:record) { double('TestModel', errors: { foo: :bar }) }
+
   it_behaves_like 'a basic error'
 
   context 'when name is not registered' do
     it 'raises error when wrong name is given' do
-      expect { described_class.new('a', :b, payload) }.to raise_error(RuntimeError, 'Wrong name')
+      expect { described_class.new('a', :b, record) }.to raise_error(RuntimeError, 'Wrong name')
     end
   end
 
@@ -20,12 +21,8 @@ RSpec.describe JsonErrors::CustomPayloadError do
       {
         code: 'custom_code',
         message: 'To json message',
-        payload: payload
+        payload: { 'RSpec::Mocks::Double' => [{ foo: :bar }] }
       }.to_json
-    end
-
-    it 'assigns payload correctly' do
-      expect(error.payload).to eq(payload)
     end
 
     it 'returns properly formatted json' do

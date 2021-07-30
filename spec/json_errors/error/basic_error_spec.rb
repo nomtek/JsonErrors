@@ -5,10 +5,17 @@ require 'json_errors/config'
 require 'json_errors/error/basic_error'
 
 RSpec.describe JsonErrors::BasicError do
+  subject(:error) { described_class.new('To json message', :custom_error) }
+
   it_behaves_like 'a basic error'
 
+  context 'when name is not registered' do
+    it 'raises error when wrong name is given' do
+      expect { described_class.new('a', :b) }.to raise_error(RuntimeError, 'Wrong name')
+    end
+  end
+
   describe '#to_json' do
-    subject(:error) { described_class.new('To json message', :custom_error) }
     let(:expected_json) do
       {
         code: 'custom_code',

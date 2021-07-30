@@ -2,21 +2,13 @@
 
 RSpec.shared_examples 'a basic error' do
   describe 'initializer' do
-    context 'when name is not registered' do
-      it 'raises error when wrong name is given' do
-        expect { described_class.new('a', :b) }.to raise_error(RuntimeError, 'Wrong name')
-      end
-    end
-
     context 'when name is registered' do
-      subject(:error) { described_class.new('Test message', :test_error) }
-
       it 'assigns proper message' do
-        expect(error.message).to eq('Test message')
+        expect(error.message).to eq('To json message')
       end
 
       it 'assigns proper code' do
-        expect(error.code).to eq('test_code')
+        expect(error.code).to eq('custom_code')
       end
     end
   end
@@ -28,10 +20,8 @@ RSpec.shared_examples 'a basic error' do
   end
 
   describe '#http_status' do
-    subject(:error) { described_class.new('Test message', :test_error) }
-
     it 'returns proper http_status' do
-      expect(error.http_status).to eq(422)
+      expect(error.http_status).to eq(418)
     end
   end
 end
