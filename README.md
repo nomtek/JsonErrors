@@ -50,8 +50,7 @@ No need for `rescue_from` or rendering the JSON error body. Every error is rescu
 ```json
 {
   "code":1010,
-  "message":"The parameter 'name' is missing or value is empty",
-  "payload":[]
+  "message":"The parameter 'name' is missing or value is empty"
 }
 ```
 
@@ -116,7 +115,7 @@ Add new label to the `custom_codes`
 Then just raise the error while checking the authentication.
 
 ```ruby
-raise JsonErrors::ApplicationError.unauthenticated('Authentication needed') 
+raise JsonErrors::Error.unauthenticated('Authentication needed') 
 ```
 
 Both cases you will get the HTTP `403 Forbidden` response with JSON formatted body:
@@ -124,8 +123,7 @@ Both cases you will get the HTTP `403 Forbidden` response with JSON formatted bo
 ```json
 {
   "code":2001,
-  "message":"Authentication needed",
-  "payload":[]
+  "message":"Authentication needed"
 }
 ```
 ___

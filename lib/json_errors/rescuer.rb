@@ -15,11 +15,11 @@ module JsonErrors
       error_dictionary.keys.reverse.each do |error_class|
         rescue_from error_class do |error|
           log_error(error)
-          render_error ApplicationError.send(error_dictionary[error_class], error)
+          render_error JsonErrors::Error.send(error_dictionary[error_class], error)
         end
       end
 
-      rescue_from ApplicationError do |error|
+      rescue_from JsonErrors::BasicError do |error|
         log_error(error)
         render_error(error)
       end
