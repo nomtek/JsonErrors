@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.2.1] - 2021-08-03
+
+- Error log formatting fixed
+
 ## [0.2.0] - 2021-08-03
 
 - ActiveRecord validation errors handling added

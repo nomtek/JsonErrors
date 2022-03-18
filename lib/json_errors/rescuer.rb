@@ -30,7 +30,7 @@ module JsonErrors
     end
 
     def log_error(error)
-      Rails.logger.error "#{error.class}: #{error}"
+      Rails.logger.error "#{error.class}: #{error.message}"
       Rails.logger.debug error.backtrace.join("\n")
     end
   end
