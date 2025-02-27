@@ -23,9 +23,8 @@ module JsonErrors
     attr_reader :record
 
     def payload
-      validation_payload = []
-      record.errors.each do |error|
-        validation_payload << { error.attribute => error.message }
+      validation_payload = record.errors.map do |error|
+        { error.attribute => error.message }
       end
 
       { record.class.to_s => validation_payload }

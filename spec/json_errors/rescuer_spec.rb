@@ -93,7 +93,7 @@ RSpec.describe JsonErrors::Rescuer, type: :controller do
     let(:config) { JsonErrors::Config.instance }
 
     context 'when error dictionary is missing' do
-      around(:each) do |example|
+      around do |example|
         old_error_dictionary = config.error_dictionary
         config.error_dictionary = {}
         example.run
@@ -109,7 +109,7 @@ RSpec.describe JsonErrors::Rescuer, type: :controller do
     end
 
     context 'when custom codes are missing' do
-      around(:each) do |example|
+      around do |example|
         old_custom_codes = config.custom_codes
         config.custom_codes = {}
         example.run

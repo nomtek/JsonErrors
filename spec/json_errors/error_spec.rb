@@ -57,6 +57,7 @@ RSpec.describe JsonErrors::Error do
 
       context 'with invalid record' do
         subject(:error) { described_class.validation_error('Validation error message', payload) }
+
         let(:payload) { double('StandardError', record: record) }
         let(:record) { double('TestModel', errors: { foo: :bar }) }
 

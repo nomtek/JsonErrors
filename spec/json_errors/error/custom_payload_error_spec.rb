@@ -6,7 +6,9 @@ require 'json_errors/error/basic_error'
 
 RSpec.describe JsonErrors::CustomPayloadError do
   subject(:error) { described_class.new('To json message', :custom_error, payload) }
+
   let(:payload) { { foo: :bar } }
+
   it_behaves_like 'a basic error'
 
   context 'when name is not registered' do

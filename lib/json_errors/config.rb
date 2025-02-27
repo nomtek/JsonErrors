@@ -10,7 +10,7 @@ module JsonErrors
     attr_accessor :error_dictionary, :custom_codes
 
     def self.missing_config_error_meesage
-      <<~'MSG'
+      <<~MSG
         Configuration is missing. Run the generattor: `bundle exec rails g json_errors::install`
         or create the initializer yourself.
         Check out the README https://github.com/nomtek/JsonErrors/blob/main/README.md

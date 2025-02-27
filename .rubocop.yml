@@ -1,6 +1,11 @@
+plugins:
+  - rubocop-rake
+  - rubocop-rspec
+
 AllCops:
   TargetRubyVersion: 3.0
   NewCops: enable
+  SuggestExtensions: false
 
 Layout/LineLength:
   Max: 120
@@ -10,3 +15,27 @@ Metrics/BlockLength:
   Exclude:
     - spec/**/*
     - config/**/*
+
+RSpec/SpecFilePathFormat:
+  Enabled: false
+
+RSpec/VerifiedDoubles:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/SubjectStub:
+  Enabled: false
+
+RSpec/MessageSpies:
+  Enabled: false
+
+RSpec/DescribedClass:
+  Enabled: false
+
+RSpec/VerifiedDoubleReference:
+  Enabled: false
