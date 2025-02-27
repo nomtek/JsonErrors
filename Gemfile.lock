@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    json_errors (0.2.1)
-      activesupport (>= 8.0.0)
+    json_errors (0.3.0)
+      activesupport (~> 8.0)
 
 GEM
   remote: https://rubygems.org/

@@ -24,8 +24,8 @@ module JsonErrors
 
     def payload
       validation_payload = []
-      record.errors.each do |key, messages|
-        validation_payload << { key => messages }
+      record.errors.each do |error|
+        validation_payload << { error.attribute => error.message }
       end
 
       { record.class.to_s => validation_payload }

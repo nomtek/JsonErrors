@@ -6,7 +6,7 @@ require 'json_errors/error/basic_error'
 
 RSpec.describe JsonErrors::ValidationError do
   subject(:error) { described_class.new('To json message', :custom_error, record) }
-  let(:record) { double('TestModel', errors: { foo: :bar }) }
+  let(:record) { double('TestModel', errors: [double({ attribute: 'foo', message: 'bar' })]) }
 
   it_behaves_like 'a basic error'
 
