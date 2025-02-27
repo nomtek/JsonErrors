@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.3.0] - 2025-02-27
+
+- Update with ActiveRecord validation errors to Rails 8
+
 ## [0.2.1] - 2021-08-03
 
 - Error log formatting fixed
