@@ -5,7 +5,6 @@ require 'rails'
 require 'action_controller/railtie'
 require 'rspec/rails'
 require 'json_errors'
-require 'pry'
 
 Dir['./spec/support/**/*.rb'].each { |f| require f }
 

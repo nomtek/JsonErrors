@@ -20,7 +20,7 @@ module JsonErrors
     def to_json(_options = nil)
       {
         code: code,
-        message: message
+        message: to_s
       }.to_json
     end
 

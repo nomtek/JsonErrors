@@ -13,7 +13,7 @@ RSpec.describe JsonErrors::Config do
 
   describe 'initializer' do
     it 'has private initializer' do
-      expect { described_class.new }.to raise_error(NoMethodError, /private method `new' called/)
+      expect { described_class.new }.to raise_error(NoMethodError, /private method 'new' called/)
     end
   end
 end
