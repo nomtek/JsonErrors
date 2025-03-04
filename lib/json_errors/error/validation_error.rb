@@ -3,11 +3,11 @@
 module JsonErrors
   # Error class for custom payload errors
   class ValidationError < BasicError
-    def initialize(msg, name, record)
+    def initialize(msg, name, model_instance)
       super(msg, name)
-      raise 'Wrong record' unless record.respond_to?(:errors)
+      raise 'Wrong record' unless model_instance.respond_to?(:errors)
 
-      @record = record
+      @model_instance = model_instance
     end
 
     def to_json(_options = nil)
@@ -20,12 +20,12 @@ module JsonErrors
 
     private
 
-    attr_reader :record
+    attr_reader :model_instance
 
     def payload
-      validation_payload = record.errors.map do |error|
+      validation_payload = model_instance.errors.map do |error|
         {
-          'object' => record.class.to_s,
+          'object' => model_instance.class.to_s,
           'attribute' => error.attribute,
           'error_type' => error.type,
           'message' => error.full_message
