@@ -6,9 +6,8 @@ module JsonErrors
     def self.method_missing(name, *args)
       message, payload = args
       return super unless name.in?(codes.keys)
-
-      return BasicError.new(message, name) if payload.nil?
       return ValidationError.new(message, name, payload&.record) if codes[name][:validation_errors] == :active_record
+      return BasicError.new(message, name) if payload.nil?
 
       CustomPayloadError.new(message, name, payload)
     end

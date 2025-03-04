@@ -24,10 +24,15 @@ module JsonErrors
 
     def payload
       validation_payload = record.errors.map do |error|
-        { error.attribute => error.message }
+        {
+          'object' => record.class.to_s,
+          'attribute' => error.attribute,
+          'error_type' => error.type,
+          'message' => error.full_message
+        }
       end
 
-      { record.class.to_s => validation_payload }
+      { 'validation_errors' => validation_payload }
     end
   end
 end
