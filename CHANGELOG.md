@@ -1,6 +1,10 @@
 ## [Unreleased]
 
-## [0.3.2] - 2025-02-27
+## [0.3.2] - 2025-03-04
+
+- bugfix: Validation errors
+
+## [0.3.2] - 2025-03-04
 
 - bugfix: Active record validation errors were never shown
 
